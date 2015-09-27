@@ -1,0 +1,15 @@
+I've been using several functional programming languages lately and I really like having a Read-Eval-Print Loop (REPL) at my disposal. I normally just use the REPL to run my unit tests but sometimes it is very useful to just write expressions and see how they evaluate. For instance, I was recently writing some Clojure code and wanted to see how to concatenate a vector of chars into a string. I just experimented for a bit in the REPL and landed on a solution, all without touching source code.
+
+With that in mind I set out to get a similar experience with C. I quickly realized that making a full REPL for C would take a bit more time than I have. However, I was able to create a script in PowerShell that approximates the experience of having a REPL for unit tests.
+
+Here is what it does:
+
+It first asks you where your source files are.
+Then it downloads "SEATEST.C" from GitHub and places it in that folder (this is the unit test framework I'm using).
+Next it compiles the program using GCC and runs it.
+This will output a screen that will tell you how many tests ran and failed.
+The script then deletes the compiled program.
+It then asks if you want to run again. (Anything but typing the word "EXIT" will run again).
+If you do it will then repeat the compilation and running steps.
+If you type "EXIT" the Script will exit and delete the "SEATEST.C" files from your directory.
+I've found that this little script really speeds up my Red, Green, Refactor loop for writing C code. The caveat being that I'm a C newb and there is probably a better way to do this, but for the time being this is working very well.
