@@ -1,0 +1,41 @@
+Elixir/Phoenix JSON App on Azure and SQL Azure with a React Client
+
+I work with ASP.Net MVC and WebAPI for a living and I've made several ASP.Net WebAPIs with AngularJS Clients in the past. But I've never used another server side framework to make anything deployable. I've messed around with many languages to solve project euler6 problems but that is about it.
+
+So, I'm going to build an app on the Elixir/Phoenix4 stack, with a ReactJS5 front end and I'm going to deploy it on Azure while using SQL Azure for a data store.
+
+The application will be a simple little diet tracking chart that I'm pulling from the excellent book "Diet Cults7" by Matt Fitzgerald. The chart allows the user to track what they eat in very broad terms (as in, I've had a portion of vegetables or two portions of fried foods). This allows the user to understand their eating patterns and direct them towards healthy foods. I've been using it off and on for a number of years in a OneNote document.
+
+<Image of Chart>
+
+The items towards the top of the chart are healthier than the ones towards the bottom.
+
+I chose to do this in Elixir on a whim basically. I like its syntax and I love the idea of building something on the Erlang VM. Elixir is a functional language inspired by Ruby and built on the Erlang virtual machine (the beam)1. The Erlang virtual machine is a highly resilient, extremely fault tolerant and incredibly scalable platform designed for communications networks. Elixir is a modern programming language built on that strong core. Phoenix4 is a very fast and scalable2,3 web framework built on Elixir.
+
+So, to start this project I just followed the instructions at this walkthrough8 to create the scaffolding for my project which is in source control at github9.
+
+The next things I plan on doing are:
+
+  1. Figure out how to use MSSQL.
+  2. Implement a very basic membership system.
+  3. Set up some CRUD operations for entering eating information.
+  4. Create a ReactJs front end (also new to me).
+  5. Deploy to Azure.
+  6. Anything else that comes up.
+
+
+1 http://stackoverflow.com/questions/16779162/what-kind-of-virtual-machine-is-beam-the-erlang-vm
+
+2 https://github.com/mroth/phoenix-showdown
+3 https://gist.github.com/omnibs/e5e72b31e6bd25caf39a
+
+4 http://www.phoenixframework.org/
+5 http://facebook.github.io/react/
+
+6 https://projecteuler.net/
+
+7 http://www.amazon.com/Diet-Cults-Surprising-Fallacy-Nutrition/dp/1605988294/ref=sr_1_1?ie=UTF8&qid=1445172570&sr=8-1&keywords=diet+cults
+
+8 http://www.phoenixframework.org/docs/up-and-running
+
+9 https://github.com/Sobieck00/phoenix_diet
