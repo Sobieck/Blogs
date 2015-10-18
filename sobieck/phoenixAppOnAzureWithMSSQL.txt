@@ -1,40 +1,24 @@
 Elixir/Phoenix JSON App on Azure and SQL Azure with a React Client
 
-I work with ASP.Net MVC and WebAPI for a living and I've made several ASP.Net WebAPIs with AngularJS Clients in the past. But I've never used another server side framework to make anything deployable. I've messed around with many languages to solve project euler6 problems but that is about it.
+I work with ASP.Net MVC and WebAPI for a living and I've made several ASP.Net WebAPIs with AngularJS Clients in the past. But I've never used another server side framework to make anything deployable. I've messed around with many languages to solve <a href="https://projecteuler.net/">project euler</a> problems but that is about it.
 
-So, I'm going to build an app on the Elixir/Phoenix4 stack, with a ReactJS5 front end and I'm going to deploy it on Azure while using SQL Azure for a data store.
+So, I'm going to build an app on the <a href="http://www.phoenixframework.org/">Elixir/Phoenix</a> stack, with a ReactJS5 front end and I'm going to deploy it on Azure while using SQL Azure for a data store.
 
-The application will be a simple little diet tracking chart that I'm pulling from the excellent book "Diet Cults7" by Matt Fitzgerald. The chart allows the user to track what they eat in very broad terms (as in, I've had a portion of vegetables or two portions of fried foods). This allows the user to understand their eating patterns and direct them towards healthy foods. I've been using it off and on for a number of years in a OneNote document.
+The application will be a simple little diet tracking chart that I'm pulling from the excellent book "<a href="http://www.amazon.com/Diet-Cults-Surprising-Fallacy-Nutrition/dp/1605988294/ref=sr_1_1?ie=UTF8&qid=1445172570&sr=8-1&keywords=diet+cults">Diet Cults</a>" by Matt Fitzgerald. The chart allows the user to track what they eat in very broad terms (as in, I've had a portion of vegetables or two portions of fried foods). This allows the user to understand their eating patterns and direct them towards healthy foods. I've been using it off and on for a number of years in a OneNote document.
 
-<Image of Chart>
+[caption id="attachment_281" align="alignnone" width="300"]<a href="http://www.sobieck.com/wp-content/uploads/2015/10/dietcultschart.jpg"><img src="http://www.sobieck.com/wp-content/uploads/2015/10/dietcultschart-300x243.jpg" alt="The items towards the top of the chart are healthier than the ones towards the bottom." width="300" height="243" class="size-medium wp-image-281" /></a> The items towards the top of the chart are healthier than the ones towards the bottom.[/caption]
 
-The items towards the top of the chart are healthier than the ones towards the bottom.
+I chose to do this in Elixir on a whim. I like its syntax and I love the idea of building something on the Erlang VM. Elixir is a functional language inspired by Ruby and built on the <a href="http://stackoverflow.com/questions/16779162/what-kind-of-virtual-machine-is-beam-the-erlang-vm">Erlang virtual machine (the beam)</a>. The Erlang virtual machine is a highly resilient, extremely fault tolerant and incredibly scalable platform designed for communications networks. Elixir is a modern programming language built on that strong core. Phoenix is a <a href="https://github.com/mroth/phoenix-showdown">fast</a> and <a href="https://gist.github.com/omnibs/e5e72b31e6bd25caf39a">scalable</a> web framework built on top of Elixir.
 
-I chose to do this in Elixir on a whim. I like its syntax and I love the idea of building something on the Erlang VM. Elixir is a functional language inspired by Ruby and built on the Erlang virtual machine (the beam)1. The Erlang virtual machine is a highly resilient, extremely fault tolerant and incredibly scalable platform designed for communications networks. Elixir is a modern programming language built on that strong core. Phoenix4 is a fast and scalable2,3 web framework built on top of Elixir.
-
-So, to start this project I just followed the instructions at this walkthrough8 to create the scaffolding for my project which is in source control at github9. It was incredibly easy to start, just a couple installs and then just a few commands in PowerShell.
+So, to start this project I just followed the instructions at this <a href="http://www.phoenixframework.org/docs/up-and-running">walkthrough</a> to create the scaffolding for my project which is in source control at <a href="https://github.com/Sobieck00/phoenix_diet">github</a>. It was incredibly easy to start, just a couple installs and then just a few commands in PowerShell.
 
 The next things I plan on doing are:
 
-  1. Figure out how to use MSSQL in Phoenix.
-  2. Implement a very basic membership system.
-  3. Set up some CRUD operations for food consumption information.
-  4. Create a ReactJs front end (also new to me).
-  5. Deploy to Azure.
+<ol>
+  <li>Figure out how to use MSSQL in Phoenix.</li>
+  <li>Implement a very basic membership system.</li>
+  <li>Set up some CRUD operations for food consumption information.</li>
+  <li>Create a ReactJs front end (also new to me).</li>
+  <li>Deploy to Azure.</li>
 
-
-1 http://stackoverflow.com/questions/16779162/what-kind-of-virtual-machine-is-beam-the-erlang-vm
-
-2 https://github.com/mroth/phoenix-showdown
-3 https://gist.github.com/omnibs/e5e72b31e6bd25caf39a
-
-4 http://www.phoenixframework.org/
-5 http://facebook.github.io/react/
-
-6 https://projecteuler.net/
-
-7 http://www.amazon.com/Diet-Cults-Surprising-Fallacy-Nutrition/dp/1605988294/ref=sr_1_1?ie=UTF8&qid=1445172570&sr=8-1&keywords=diet+cults
-
-8 http://www.phoenixframework.org/docs/up-and-running
-
-9 https://github.com/Sobieck00/phoenix_diet
+</ol>
