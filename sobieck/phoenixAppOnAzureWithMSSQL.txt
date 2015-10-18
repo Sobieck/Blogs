@@ -10,18 +10,17 @@ The application will be a simple little diet tracking chart that I'm pulling fro
 
 The items towards the top of the chart are healthier than the ones towards the bottom.
 
-I chose to do this in Elixir on a whim basically. I like its syntax and I love the idea of building something on the Erlang VM. Elixir is a functional language inspired by Ruby and built on the Erlang virtual machine (the beam)1. The Erlang virtual machine is a highly resilient, extremely fault tolerant and incredibly scalable platform designed for communications networks. Elixir is a modern programming language built on that strong core. Phoenix4 is a very fast and scalable2,3 web framework built on Elixir.
+I chose to do this in Elixir on a whim. I like its syntax and I love the idea of building something on the Erlang VM. Elixir is a functional language inspired by Ruby and built on the Erlang virtual machine (the beam)1. The Erlang virtual machine is a highly resilient, extremely fault tolerant and incredibly scalable platform designed for communications networks. Elixir is a modern programming language built on that strong core. Phoenix4 is a fast and scalable2,3 web framework built on top of Elixir.
 
-So, to start this project I just followed the instructions at this walkthrough8 to create the scaffolding for my project which is in source control at github9.
+So, to start this project I just followed the instructions at this walkthrough8 to create the scaffolding for my project which is in source control at github9. It was incredibly easy to start, just a couple installs and then just a few commands in PowerShell.
 
 The next things I plan on doing are:
 
-  1. Figure out how to use MSSQL.
+  1. Figure out how to use MSSQL in Phoenix.
   2. Implement a very basic membership system.
-  3. Set up some CRUD operations for entering eating information.
+  3. Set up some CRUD operations for food consumption information.
   4. Create a ReactJs front end (also new to me).
   5. Deploy to Azure.
-  6. Anything else that comes up.
 
 
 1 http://stackoverflow.com/questions/16779162/what-kind-of-virtual-machine-is-beam-the-erlang-vm
