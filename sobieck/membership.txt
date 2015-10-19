@@ -37,7 +37,11 @@ in def deps add {:comeonin, "~> 1.3"}
 
 run mix deps.get
 
-at this point I needed to install microsofts c++ compiler. 
+at this point I needed to install microsofts c++ compiler.
 
+"c:\program files (x86)\Microsoft Visual Studio 14.0\VC\bin"
+added to path
+
+ran C:\program files (x86)\Microsoft Visual Studio 14.0\VC> vcvarsall amd64
 
 JWT https://github.com/bryanjos/joken
