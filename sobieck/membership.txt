@@ -5,3 +5,39 @@ create repo with this command:
 Add this line to API scope in the router.ex
 
   resources "/users", UserController
+
+Create POST: http://localhost:4000/api/users
+{
+  "user" :
+  {
+   "user_name" : "asd",
+   "password_hash" : "password"
+  }
+}
+
+//UNIQUE Username
+
+https://medium.com/@diamondgfx/testing-validations-in-elixir-and-ecto-677bd8a071a1
+
+mix ecto.gen.migration unique_user_name
+
+to new migration - 20151019193618_unique_user_name.ex
+create unique_index(:users, [:user_name])
+
+to model in changeset in user.ex
+|> unique_constraint(:user_name)
+
+//Setting up hashing
+
+in mix.exs
+
+in def application add :comeonin
+
+in def deps add {:comeonin, "~> 1.3"}
+
+run mix deps.get
+
+at this point I needed to install microsofts c++ compiler. 
+
+
+JWT https://github.com/bryanjos/joken
