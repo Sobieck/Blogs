@@ -1,0 +1,7 @@
+create repo with this command:
+
+  mix phoenix.gen.json User users user_name:string password_hash:string
+
+Add this line to API scope in the router.ex
+
+  resources "/users", UserController
