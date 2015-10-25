@@ -2,7 +2,7 @@ Elixir/Phoenix JSON App on Azure and SQL Azure with a React Client
 
 I work with ASP.Net MVC and WebAPI for a living and I've made several ASP.Net WebAPIs with AngularJS Clients in the past. But I've never used another server side framework to make anything deployable. I've messed around with many languages to solve <a href="https://projecteuler.net/">project euler</a> problems but that is about it.
 
-So, I'm going to build an app on the <a href="http://www.phoenixframework.org/">Elixir/Phoenix</a> stack, with a ReactJS5 front end and I'm going to deploy it on Azure while using SQL Azure for a data store.
+So, I'm going to build an app on the <a href="http://www.phoenixframework.org/">Elixir/Phoenix</a> stack, with a <a href="http://facebook.github.io/react/">ReactJS</a> front end and I'm going to deploy it on Azure while using SQL Azure for a data store.
 
 The application will be a simple little diet tracking chart that I'm pulling from the excellent book "<a href="http://www.amazon.com/Diet-Cults-Surprising-Fallacy-Nutrition/dp/1605988294/ref=sr_1_1?ie=UTF8&qid=1445172570&sr=8-1&keywords=diet+cults">Diet Cults</a>" by Matt Fitzgerald. The chart allows the user to track what they eat in very broad terms (as in, I've had a portion of vegetables or two portions of fried foods). This allows the user to understand their eating patterns and direct them towards healthy foods. I've been using it off and on for a number of years in a OneNote document.
 
