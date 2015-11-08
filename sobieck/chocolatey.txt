@@ -1,1 +1,1 @@
-it is awesome. 
+it is awesome. Talk about how to automate getting environments set up. 
