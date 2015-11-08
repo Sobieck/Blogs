@@ -20,4 +20,5 @@ The next things I plan on doing are:
   <li>Set up some CRUD operations for food consumption information.</li>
   <li>Create a ReactJs front end (also new to me).</li>
   <li>Deploy to Heroku.</li>
+  <li>Figure out how to do connection pooling in Elixir.</li>
 </ol>
