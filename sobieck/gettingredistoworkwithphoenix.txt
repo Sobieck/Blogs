@@ -32,3 +32,5 @@ mix deps.get
 Redis is all connected now.
 
 Show code for connection.
+
+Show how we connected to it, and how it worked. 
