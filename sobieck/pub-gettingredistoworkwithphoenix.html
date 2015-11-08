@@ -14,8 +14,10 @@ I then started up a redis-server with following command and verified that Redis 
 </pre>
 [caption id="attachment_431" align="alignleft" width="245"]<a href="http://www.sobieck.com/wp-content/uploads/2015/11/redisworking.jpg"><img class="wp-image-431 size-full" src="http://www.sobieck.com/wp-content/uploads/2015/11/redisworking.jpg" alt="redisworking" width="245" height="141" /></a> As you can see I was able to persist are retrieve the key "123".[/caption]
 
-So at this point Redis is working on my local machine. Now it was just a matter of getting Redis to play nice with Phoenix. It looks like the best received Redis client for Elixir is <a href="https://github.com/artemeff/exredis">Exredis</a>. To integrate that into my solution all I had to do was edit my <b>mix.exs</b> file and make a minor change to my dev config file. I just added <b>{:exredis, "&gt;= 0.2.2"}</b> to my deps function and <b>:exredis</b> to my application function. Those two functions looked like this when I was done:
-<pre>  defp deps do
+So at this point Redis is working on my local machine. Now it was just a matter of getting Redis to play nice with Phoenix. It looks like the best received Redis client for Elixir is <a href="https://github.com/artemeff/exredis">Exredis</a>. To integrate that into my solution all I had to do was edit my <b>mix.exs</b> file and make a minor change to my dev config file. I just added <b>{:exredis, "&gt;= 0.2.2"}</b> to my deps function and <b>:exredis</b> to my application function.
+Here is the what those functions looked like after completion.
+<pre>
+  defp deps do
     [{:phoenix, "~> 1.0.3"},
      {:phoenix_ecto, "~> 1.1"},
      {:postgrex, ">= 0.0.0"},
@@ -94,4 +96,4 @@ And everything works! Below are some screenshots of the action!
 
 [caption id="attachment_411" align="alignnone" width="739"]<a href="http://www.sobieck.com/wp-content/uploads/2015/11/gettingdatafromredis.jpg"><img class="wp-image-411 size-full" src="http://www.sobieck.com/wp-content/uploads/2015/11/gettingdatafromredis.jpg" alt="In this screenshot I use Fiddler to make a get request for the item I just saved." width="739" height="298" /></a> In this screenshot I use Fiddler to make a get request for the item I just saved.[/caption]
 
-[caption id="attachment_391" align="alignnone" width="467"]<a href="http://www.sobieck.com/wp-content/uploads/2015/11/elixirviewofget.jpg"><img class="wp-image-391 size-full" src="http://www.sobieck.com/wp-content/uploads/2015/11/elixirviewofget.jpg" alt="In this screenshot we see that phoenix successfully got the data I sent.[" width="467" height="94" /></a> In this screenshow we see that phoenix successfully got the data I sent.[/caption]
+[caption id="attachment_391" align="alignnone" width="467"]<a href="http://www.sobieck.com/wp-content/uploads/2015/11/elixirviewofget.jpg"><img class="wp-image-391 size-full" src="http://www.sobieck.com/wp-content/uploads/2015/11/elixirviewofget.jpg" alt="In this screenshot we see that phoenix successfully got the data I sent.[" width="467" height="94" /></a> In this screenshot we see that phoenix successfully got the data I sent.[/caption]
