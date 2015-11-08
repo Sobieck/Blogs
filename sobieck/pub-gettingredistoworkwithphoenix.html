@@ -1,0 +1,97 @@
+Connecting to Redis in a Phoenix Application
+
+Connecting to <a href="http://redis.io/">Redis</a> is surprisingly easy in Phoenix. It was on par with what I would expect in C# when using NuGet. For me the meat of the problem was installing Redis and that was even quite easy since I use <a href="https://chocolatey.org/">Chocolatey</a> for installs. Everything else was just adding a couple of lines to my mix file and config.
+
+The first thing I did was install redis-64 in powershell with the following command:
+<pre>  choco install redis-64
+</pre>
+After that I installed redis as a service on my machine using the following command:
+<pre>  redis-server --service-install
+</pre>
+I then started up a redis-server with following command and verified that Redis was working with the following commands:
+<pre>  redis-server
+  redis-cli
+</pre>
+[caption id="attachment_431" align="alignleft" width="245"]<a href="http://www.sobieck.com/wp-content/uploads/2015/11/redisworking.jpg"><img class="wp-image-431 size-full" src="http://www.sobieck.com/wp-content/uploads/2015/11/redisworking.jpg" alt="redisworking" width="245" height="141" /></a> As you can see I was able to persist are retrieve the key "123".[/caption]
+
+So at this point Redis is working on my local machine. Now it was just a matter of getting Redis to play nice with Phoenix. It looks like the best received Redis client for Elixir is <a href="https://github.com/artemeff/exredis">Exredis</a>. To integrate that into my solution all I had to do was edit my <b>mix.exs</b> file and make a minor change to my dev config file. I just added <b>{:exredis, "&gt;= 0.2.2"}</b> to my deps function and <b>:exredis</b> to my application function. Those two functions looked like this when I was done:
+<pre>  defp deps do
+    [{:phoenix, "~> 1.0.3"},
+     {:phoenix_ecto, "~> 1.1"},
+     {:postgrex, ">= 0.0.0"},
+     {:phoenix_html, "~> 2.1"},
+     {:phoenix_live_reload, "~> 1.0", only: :dev},
+     {:cowboy, "~> 1.0"},
+     {:comeonin, "~> 1.3"},
+     {:exredis, ">= 0.2.2"}]
+  end
+
+  def application do
+    [mod: {PhoenixDiet, []},
+    applications: [:phoenix, :phoenix_html, :cowboy, :logger,
+                    :phoenix_ecto, :postgrex, :comeonin, :exredis]]
+  end
+</pre>
+I then added the following to my dev.exs in the config folder of my solution:
+<pre>  config :exredis,
+    host: "localhost",
+    port: 6379,
+    password: "",
+    db: 0,
+    reconnect: :no_reconnect,
+    max_queue: :infinity
+</pre>
+I then ran <b>mix deps.get</b> in powershell to get the exredis dependencies and everything was all set up. Now just to write a little code to demonstrate that everything was working.
+
+I made a new controller called RedisController. Basically the controller's functions make connections to Redis and then read or write some data. I don't have connection pooling set up yet but this should happen at some point in the future. It and its routing look like this:
+<pre>
+defmodule PhoenixDiet.RedisController do
+  use PhoenixDiet.Web, :controller
+  import Exredis
+
+
+  def create(conn, %{"key" => key, "value" => value}) do
+    {:ok, client} = Exredis.start_link
+
+    client |> Exredis.query ["SET", key, value]
+
+    json conn, %{ message: "success!"}
+  end
+
+  def show(conn, %{"id" => id }) do
+
+    {:ok, client} = Exredis.start_link
+
+    result = client |> Exredis.query ["GET", id]
+
+    json conn, %{ value: result }
+  end
+end
+
+defmodule PhoenixDiet.Router do
+    use PhoenixDiet.Web, :router
+
+    pipeline :api do
+      plug :accepts, ["json"]
+    end
+
+      # Other scopes may use custom stacks.
+    scope "/api", PhoenixDiet do
+      pipe_through :api
+
+      resources "/redis", RedisController
+      resources "/users", UserController
+    end
+  end
+</pre>
+
+And everything works! Below are some screenshots of the action!
+
+
+[caption id="attachment_421" align="alignnone" width="756"]<a href="http://www.sobieck.com/wp-content/uploads/2015/11/postingdatatoredis.jpg"><img class="wp-image-421 size-full" src="http://www.sobieck.com/wp-content/uploads/2015/11/postingdatatoredis.jpg" alt="In this screenshot I use Fiddler to make a post request to my phoenix application." width="756" height="406" /></a> In this screenshot I use Fiddler to make a post request to my phoenix application.[/caption]
+
+[caption id="attachment_401" align="alignnone" width="476"]<a href="http://www.sobieck.com/wp-content/uploads/2015/11/elixirviewofpost.jpg"><img class="wp-image-401 size-full" src="http://www.sobieck.com/wp-content/uploads/2015/11/elixirviewofpost.jpg" alt="In this screenshot we see that phoenix successfully saved the data I sent." width="476" height="78" /></a> In this screenshot we see that phoenix successfully saved the data I sent.[/caption]
+
+[caption id="attachment_411" align="alignnone" width="739"]<a href="http://www.sobieck.com/wp-content/uploads/2015/11/gettingdatafromredis.jpg"><img class="wp-image-411 size-full" src="http://www.sobieck.com/wp-content/uploads/2015/11/gettingdatafromredis.jpg" alt="In this screenshot I use Fiddler to make a get request for the item I just saved." width="739" height="298" /></a> In this screenshot I use Fiddler to make a get request for the item I just saved.[/caption]
+
+[caption id="attachment_391" align="alignnone" width="467"]<a href="http://www.sobieck.com/wp-content/uploads/2015/11/elixirviewofget.jpg"><img class="wp-image-391 size-full" src="http://www.sobieck.com/wp-content/uploads/2015/11/elixirviewofget.jpg" alt="In this screenshot we see that phoenix successfully got the data I sent.[" width="467" height="94" /></a> In this screenshow we see that phoenix successfully got the data I sent.[/caption]
