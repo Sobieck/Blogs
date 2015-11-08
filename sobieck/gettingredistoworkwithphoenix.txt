@@ -27,6 +27,8 @@ end
 
 then run
 
+edit config file to include localhost
+
 mix deps.get
 
 Redis is all connected now.
