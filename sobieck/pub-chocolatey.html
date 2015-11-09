@@ -1,0 +1,20 @@
+Chocolatey is Awesome!
+
+So, I've been messing around a bit with <a href="https://chocolatey.org/">Chocolatey</a> lately. It is a package manager for Windows much like yum on Linux machines which enables easy downloading and installing of applications from the command line. The reason why I've been messing with it is that I tend to play around a lot with many different programming languages. I want to be able to compile and run those programs anywhere I have access to my GitHub repository. Normally this would result in me visiting a bunch of different websites and downloading their installers. With chocolatey I can be done with just a few commands in a powershell window. Chocolatey then goes and downloads the packages and installs them. It will even handle updates for you (this is important for me, I once had a node install that was about 4 versions out of date).
+
+Chocolatey makes it extremely easy to define a set of applications that I would like have installed. You just make an XML config document like the one I've defined below (this is what I install on all my machines). And then just run <b>choco install your.config</b> in a administrator powershell window. You must be able to run powershell scripts as chocolatey is built on them.
+
+<pre>
+  <?xml version="1.0" encoding="utf-8"?>
+  <packages>
+    <package id="atom" />
+    <package id="github" />
+    <package id="pscx" />
+    <package id="keepass.install" />
+    <package id="google-chrome-x64" />
+    <package id="spotify" />
+    <package id="fiddler4" />
+  </packages>
+</pre>
+
+This will really make it easy for me to define exactly what programs each of my projects depend on and have them be just a one click install. No more fussing about trying to figure out what I'm missing.
