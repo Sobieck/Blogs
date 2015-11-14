@@ -1,0 +1,73 @@
+Word Documents in Github with Meaningful Change History
+
+My wife, Lisa, is writing a book and we had a scare where she could have lost a few days of work. Somehow OneDrive's syncing got went out of date and wanted to replace the local version with an old version. This would have been suboptimal.
+
+So, I decided to create a private Github repo for Lisa so she could keep the document under source control. So I created the repo and added the Microsoft Word file to it. I was looking forward to being able to see differences like we can with source code, but Word files are saved as binaries on Github which makes comparisions impossible. So, I decided last Thursday to create Lisa a little program that would transform her Word file to .txt just so she could see differences between commits. She would never edit the txt files, they are just there so we can see what changed in each new commit to Github.
+
+This application had to be very easy to use. Lisa does not like technology at all. So, it was going to have to be one click and entering a commit comment at that is it. So, I decided I would create a little powershell/F# program. The F# part of the program transforms the Word file to a txt file and the powershell just interacts with git to create a commit and sync it. The application's source is at this Github <a href="https://github.com/Sobieck00/DocxToTxtToGithub">repo</a>.
+
+The first part of the application is F#. It uses <a href="http://www.nuget.org/packages/Spire.Doc/">Spire.net</a> to actually convert the file. Below is the entirety of the F# program.
+
+<pre>
+//ConvertFile.fs
+module ConvertFile
+
+open Spire.Doc
+
+    let convertDocument path targetFileName extensionOfFileToConvert =
+        let doc = new Document()
+
+        let fileToConvertPath = path + targetFileName + extensionOfFileToConvert
+        doc.LoadFromFile(fileToConvertPath)
+
+        let txtifiedFilePath = fileToConvertPath.Replace(extensionOfFileToConvert, ".txt")
+        doc.SaveToFile(txtifiedFilePath, FileFormat.Txt)
+
+//program.fs
+module DocxToGit.main
+
+open System
+open ConvertFile
+
+[<EntryPoint>]
+let main argv =
+    printf "Hello"
+
+    let arguments = Array.toList argv
+
+    let extension = List.tail arguments |> List.tail |> List.head
+    let fileName = List.tail arguments |> List.head
+
+    convertDocument (List.head arguments) fileName extension
+    0
+</pre>
+
+There isn't much to this program. It just converts a bunch of command line args to a list, and this passes those arguments to a function that opens the Word file and converts it to a text document.
+
+So, the rest of the application is a PowerShell script and a batch file to run that PowerShell script. The PowerShell script is below:
+
+<pre>
+git config --global credential.helper wincred
+
+$whatAreYourEditsAbout = read-host "What were your edits about?"
+
+cd c:\docToGit
+
+.\DocxToGit c:\github\lisasbook\ "When Doctor Becomes Patient v 2" .docx
+
+cd c:\github\lisasbook\
+
+git add .
+git commit -m $whatAreYourEditsAbout
+git push
+</pre>
+
+The first line allows git to store my Github credentials on Lisa's computer. The next 2 lines run the F# file converter, and the final 4 line create the commit and push it to Github.
+
+And finally, I needed the powershell program to be able to run at a single click. This batch file allows that:
+
+<pre>
+PowerShell -NoProfile -ExecutionPolicy Bypass -Command "& 'C:\doctoGit\covertDocxAndCommitToGit.ps1'"
+</pre>
+
+Writing the "application" took me an evening to write. And I think that having source control tools will make writing a book easier. Lisa will be able to see what she wrote and how her book will evolve.
