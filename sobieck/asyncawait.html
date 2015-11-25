@@ -1,0 +1,17 @@
+TPL -> Processor Bound work. This blocks and should NOT be used for IO. This is extremely useful though for processor bound work. -> Maybe another blog about how to use this effectively.
+
+Async/Await should be used for IO as it is non-blocking. How does this work with MVC? How does it work with WebAPI? Explain Tasks, Task -> void, Task<T> -> T, Conventions -> Async prefix
+
+Benefits: Concurrency, Scalability, and code readability (exception handling etc).
+
+Concurrency improves the Customer's experience and scalability improves the bottom line.
+
+Issues -> It is like a virus in your code. In order for it to be used, the calling code must also be async in the called code is async.
+
+Misconceptions about Async/await, not your traditional thread management. It really is worth it to use this in situations where you are blocking only for a few milliseconds (need sources).
+
+Code smell -> .Result. Await should be used
+
+TPL example -> why it isn't great at IO.
+Async/Await example -> hit an API a lot. WhenAll()
+Async/Await example -> fastest stock quote. WhenOne()
